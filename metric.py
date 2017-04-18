@@ -1,11 +1,7 @@
 # coding=utf-8
+class siamise_metric(EvalMetric):
 
-import mxnet as mx
-import numpy as np
-
-class siamise_metric(mx.metric.EvalMetric):
-
-    def __init__(self, name='siamise_metric'):
+    def __init__(self, name='siamise_acc'):
         super(siamise_metric, self).__init__(name=name)
 
     def update(self, label, pred):
@@ -13,6 +9,5 @@ class siamise_metric(mx.metric.EvalMetric):
         labels = label[0]
         preds_label = preds.asnumpy().ravel()
         labels = labels.asnumpy().ravel()
-        self.sum_metric += labels[preds_label < 0.5].sum()
+        self.sum_metric += labels[preds_label < 0.5].sum() + len(preds_label >= 0.5).sum()
         self.num_inst += len(labels)
-
