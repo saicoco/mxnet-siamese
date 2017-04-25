@@ -1,6 +1,5 @@
 # coding=utf-8
 import mxnet as mx
-
 class siamise_metric(mx.metric.EvalMetric):
 
     def __init__(self, name='siamise_acc'):
