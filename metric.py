@@ -10,5 +10,5 @@ class siamise_metric(mx.metric.EvalMetric):
         labels = label[0]
         preds_label = preds.asnumpy().ravel()
         labels = labels.asnumpy().ravel()
-        self.sum_metric += labels[preds_label < 0.5].sum() + len(preds_label >= 0.5).sum()
+        self.sum_metric += labels[preds_label < 0.5].sum() + len(label[preds_label >= 0.5]) - label[preds_label >= 0.5].sum() 
         self.num_inst += len(labels)
