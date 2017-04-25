@@ -8,7 +8,7 @@ import mxnet as mx
 import numpy as np
 from siamise_sym import *
 from dataloader import PairDataIter
-from metric import siamise_metric
+from metric import siamise_metric, contrastive_loss
 
 def main():
     # parse args
@@ -32,8 +32,10 @@ def main():
     train_iter = PairDataIter(batch_size=args.batch_size, mode='train')
     val_iter = PairDataIter(batch_size=args.batch_size, mode='val')
     siametric = siamise_metric()
+    contra_loss = contrastive_loss()
     eval_metric = mx.metric.CompositeEvalMetric()
     eval_metric.add(siametric)
+    eval_metric.add(contra_loss)
     mod.fit(
         train_data=train_iter,
         eval_data=val_iter,

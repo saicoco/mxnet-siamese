@@ -61,7 +61,11 @@ class PairDataIter(mx.io.DataIter):
 
     def reset(self):
         self.count = 0
-
+        indexes = range(len(self.pairs))
+        random.shuffle(indexes)
+        self.pairs = self.pairs[indexes]
+        self.sim_labels = self.sim_labels[indexes]
+        
     def next(self):
         if self.count == self.end_idx:
             raise StopIteration
