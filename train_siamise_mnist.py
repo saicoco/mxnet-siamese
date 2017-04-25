@@ -3,7 +3,6 @@
 import argparse
 import logging
 logging.basicConfig(level=logging.DEBUG)
-from common import find_mxnet, fit
 import mxnet as mx
 import numpy as np
 from siamise_sym import *
@@ -16,7 +15,7 @@ def main():
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--batch_size', type=int, default=128,
                         help='size of batch')
-    parser.add_argument('--epoches', type=int, default=10,
+    parser.add_argument('--epoches', type=int, default=50,
                         help='epoches of train stage')
     parser.add_argument('--gpus', type=str, default=None, help="context device")
     args = parser.parse_args()
