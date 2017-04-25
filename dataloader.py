@@ -1,7 +1,6 @@
 # coding=utf-8
 import random
 import os
-from common import find_mxnet, fit
 from common.util import download_file
 import mxnet as mx
 import numpy as np
